@@ -76,16 +76,17 @@ function celsiusToFahrenheit(temperature) {
 }
 
 tempElement.addEventListener('click', function() {
-    if (weather.temperature.value === undefined) 
-    return;
-        if (weather.temperature.value === 'celsius') {
-            let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
-            fahrenheit = Math.floor(fahrenheit)
-            
-            tempElement.innerHTML = `${fahrenheit}°<span>F</spa>`
-            weather.temperature.unit = 'fahrenheit'
-        } else {
-            tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
-            weather.temperature.unit = 'celcius'
-        }
+    // if (weather.temperature.value === undefined) 
+    // return;
+    console.log(weather.temperature)
+    if (weather.temperature.unit === 'celsius') {
+        let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
+        fahrenheit = Math.floor(fahrenheit);
+        
+        tempElement.innerHTML = `${fahrenheit}°<span>F</span>`
+        weather.temperature.unit = 'fahrenheit';
+    } else {
+        tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
+        weather.temperature.unit = 'celsius'
+    }
 });
