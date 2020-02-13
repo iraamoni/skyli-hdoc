@@ -16,7 +16,7 @@ const key = '70e35fea7adc9d727c2aba9846756853';
 //check if browser supports geolocation 
 
 if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(setPosition, showError);
+        // navigator.geolocation.getCurrentPosition(setPosition, showError);
 } else {
     notificationElement.style.display = 'block';
     notificationElement.innerHTML = "<p>Browser doesn't support geolocation</p>";
@@ -25,6 +25,7 @@ if ('geolocation' in navigator) {
 // Set users position 
 
 function setPosition(position) {
+    console.log(position)
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
 
@@ -42,23 +43,20 @@ function getWeather(latitude, longitude) {
     let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
 
     fetch(api)
-
-    .then(function(response){
-        let data = response.json();
-        return data;
-    })
-
-    .then(function (data){
-        weather.temperature.value = Math.floor(data.main.temp - kelvin);
-        weather.description = data.weather[0].description;
-        weather.iconId = data.weather[0].icon;
-        weather.city = data.name;
-        weather.country = data.sys.country;
-    })
-
-    .then(function() {
-        displayWeather();
-    });
+        .then(function(response){
+            let data = response.json();
+            return data;
+        })
+        .then(function (data){
+            weather.temperature.value = Math.floor(data.main.temp - kelvin);
+            weather.description = data.weather[0].description;
+            weather.iconId = data.weather[0].icon;
+            weather.city = data.name;
+            weather.country = data.sys.country;
+        })
+        .then(function() {
+            displayWeather();
+        });
 }
 
 //display weather to UI
