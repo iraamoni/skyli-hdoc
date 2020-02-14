@@ -113,3 +113,15 @@ color: #293251;
 text-align: center;
 font-size: 0.8em;
 }
+
+.city-list {
+    list-style-type: none;
+    padding-left: 0;
+    color: #293251;
+    font-weight: 600;
+}
+
+.city-list li {
+    padding: 5px;
+    text-align: center;
+}

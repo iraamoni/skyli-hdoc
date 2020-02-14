@@ -16,7 +16,7 @@ const key = '70e35fea7adc9d727c2aba9846756853';
 //check if browser supports geolocation 
 
 if ('geolocation' in navigator) {
-        // navigator.geolocation.getCurrentPosition(setPosition, showError);
+    navigator.geolocation.getCurrentPosition(setPosition, showError);
 } else {
     notificationElement.style.display = 'block';
     notificationElement.innerHTML = "<p>Browser doesn't support geolocation</p>";
