@@ -1,8 +1,10 @@
-const iconElement = document.querySelector('.weather-icon')
-const notificationElement = document.querySelector('.notification')
-const tempElement = document.querySelector('.temperature-value p')
-const descElement = document.querySelector('.temperature-description p')
-const locationElement = document.querySelector('.location p')
+const iconElement = document.querySelector('.weather-icon');
+const notificationElement = document.querySelector('.notification');
+const tempElement = document.querySelector('.temperature-value p');
+const descElement = document.querySelector('.temperature-description p');
+const locationElement = document.querySelector('.location p');
+const cityListElement = document.querySelector('.city-list');
+const cityListItemElement = document.querySelectorAll('.city-list-item')
 
 const weather = {}; 
 
@@ -35,6 +37,7 @@ function setPosition(position) {
 //show error when there is an issue with the geolocation service 
 
 function showError(error) {
+    console.log(error)
     notificationElement.style.display = 'block';
     notificationElement.innerHTML = `<p> ${error.message} </p>`
 }
@@ -88,3 +91,23 @@ tempElement.addEventListener('click', function() {
         weather.temperature.unit = 'celsius'
     }
 });
+
+let isCityListHidden = true;
+locationElement.addEventListener('click', function() {
+    if (isCityListHidden) {
+        cityListElement.style.display = 'block';
+        isCityListHidden = false;
+    } else {
+        cityListElement.style.display = 'none';
+        isCityListHidden = true;
+    }
+})
+
+cityListItemElement.forEach(item => {
+    item.addEventListener('click', function(event) {
+        const cityName = event.target.getAttribute('data-city')
+        const position = { coords: Locations[cityName] }
+        setPosition(position)
+    })
+})
+
